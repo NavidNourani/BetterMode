@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite + Tailwind CSS
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -77,3 +77,9 @@ VITE_BETTERMODE_CLIENT_ID=
 VITE_BETTERMODE_CLIENT_SECRET=
 VITE_BETTERMODE_SIGNING_SECRET=
 ```
+
+## Tailwind CSS
+
+This project uses Tailwind CSS for styling. Tailwind classes can be used directly in your JSX.
+
+To customize the Tailwind configuration, edit the `tailwind.config.js` file.
