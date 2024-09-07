@@ -22,7 +22,7 @@ export default tseslint.config({
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 - Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
@@ -31,7 +31,7 @@ export default tseslint.config({
 
 ```js
 // eslint.config.js
-import react from 'eslint-plugin-react'
+import react from 'eslint-plugin-react';
 
 export default tseslint.config({
   // Set the react version
@@ -46,5 +46,24 @@ export default tseslint.config({
     ...react.configs.recommended.rules,
     ...react.configs['jsx-runtime'].rules,
   },
-})
+});
 ```
+
+## Development Setup
+
+### Format on Save
+
+To ensure consistent code formatting, please configure your IDE to format on save using Prettier:
+
+- **VS Code**: Install the "Prettier - Code formatter" extension and add the following to your `.vscode/settings.json`:
+
+  ```json
+  {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+  ```
+
+- **WebStorm**: Enable Prettier on save in Preferences/Settings > Languages & Frameworks > JavaScript > Prettier
+
+For other IDEs, please configure format on save with Prettier accordingly.
