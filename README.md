@@ -67,3 +67,13 @@ To ensure consistent code formatting, please configure your IDE to format on sav
 - **WebStorm**: Enable Prettier on save in Preferences/Settings > Languages & Frameworks > JavaScript > Prettier
 
 For other IDEs, please configure format on save with Prettier accordingly.
+
+## Environment Setup
+
+Create a `.env` file in the project root with the following content:
+
+```
+VITE_BETTERMODE_CLIENT_ID=
+VITE_BETTERMODE_CLIENT_SECRET=
+VITE_BETTERMODE_SIGNING_SECRET=
+```
