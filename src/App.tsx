@@ -1,34 +1,33 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import { ENV } from './utils/env';
+import Home from './pages/Home';
+import Posts from './pages/Posts';
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  // You can now use ENV.BETTERMODE_CLIENT_ID, etc.
-  console.log(ENV.BETTERMODE_CLIENT_ID);
-
   return (
-    <div className="container mx-auto p-4">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="App">
+        <nav className="bg-gray-800 p-4">
+          <ul className="flex space-x-4">
+            <li>
+              <Link to="/" className="text-white hover:text-gray-300">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/posts" className="text-white hover:text-gray-300">
+                Posts
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/posts" element={<Posts initialData={null} />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </div>
+    </Router>
   );
 }
 
