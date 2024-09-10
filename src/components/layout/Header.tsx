@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Logo from './header/Logo';
-import DesktopNav from './header/DesktopNav';
-import LoginButton from './header/LoginButton';
-import DrawerSidebar from './header/DrawerSidebar';
 import { useTheme } from '../../hooks/useTheme';
+import DesktopNav from './header/DesktopNav';
+import DrawerSidebar from './header/DrawerSidebar';
+import LoginButton from './header/LoginButton';
+import Logo from './header/Logo';
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -34,17 +34,18 @@ const Header: React.FC = () => {
         <Logo />
 
         <DesktopNav />
-
-        <button
-          onClick={toggleTheme}
-          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center transition-colors duration-200"
-        >
-          <span className="md:mr-2">{theme === 'light' ? '🌙' : '☀️'}</span>
-          <span className="text-sm text-gray-800 dark:text-white max-md:hidden">
-            {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
-          </span>
-        </button>
-        <LoginButton className="hidden md:block" />
+        <div className="flex items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center transition-colors duration-200"
+          >
+            <span className="md:mr-2">{theme === 'light' ? '🌙' : '☀️'}</span>
+            <span className="text-sm text-gray-800 dark:text-white max-md:hidden">
+              {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+            </span>
+          </button>
+          <LoginButton className="hidden md:block" />
+        </div>
       </div>
 
       <DrawerSidebar isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />

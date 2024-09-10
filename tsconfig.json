@@ -1,11 +1,5 @@
 {
   "files": [],
   "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
-  "include": [".prettierrc.json"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@gql/*": ["src/graphql/*"]
-    }
-  }
+  "include": [".prettierrc.json"]
 }

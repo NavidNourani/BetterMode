@@ -1,10 +1,7 @@
-import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-
-const httpLink = createHttpLink({
-  uri: 'YOUR_GRAPHQL_ENDPOINT', // Replace with your actual GraphQL endpoint
-});
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 export const client = new ApolloClient({
-  link: httpLink,
+  uri: import.meta.env.VITE_BETTERMODE_API_URL,
   cache: new InMemoryCache(),
 });
+console.log(import.meta.env.VITE_BETTERMODE_API_URL);
