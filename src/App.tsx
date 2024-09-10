@@ -1,7 +1,6 @@
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import './App.css';
 import Home from './pages/Home';
-import Posts from './pages/Posts';
+import LoginPage from './pages/auth/login';
 
 function App() {
   return (
@@ -24,7 +23,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/posts" element={<Posts initialData={null} />} />
+          {/* <Route path="/posts" element={<Posts initialData={null} />} /> */}
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
     </Router>

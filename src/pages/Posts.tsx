@@ -1,6 +1,6 @@
 import { ApolloProvider, useQuery } from '@apollo/client';
-import { client } from '@graphql/apollo-client';
-import { GET_POSTS } from '@graphql/queries';
+import { client } from '../apollo-client';
+import { GET_POSTS } from '../graphql/queries';
 
 export async function getServerSideProps() {
   // Fetch data on the server
@@ -10,7 +10,7 @@ export async function getServerSideProps() {
 
 function Posts({ initialData }: { initialData: any }) {
   const { data, loading, error } = useQuery(GET_POSTS, {
-    initialData,
+    client,
   });
 
   if (loading) return <p>Loading...</p>;
