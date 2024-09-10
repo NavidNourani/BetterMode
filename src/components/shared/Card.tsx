@@ -7,13 +7,13 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ children, title }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="bg-background-light-100 dark:bg-background-dark-800 shadow-md rounded-lg overflow-hidden">
       {title && (
-        <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+        <div className="px-4 py-3 bg-primary-50 dark:bg-primary-900 border-b border-primary-200 dark:border-primary-700">
+          <h3 className="text-lg font-semibold text-text-light dark:text-text-dark">{title}</h3>
         </div>
       )}
-      <div className="p-4">{children}</div>
+      <div className="p-4 text-text-light dark:text-text-dark">{children}</div>
     </div>
   );
 };

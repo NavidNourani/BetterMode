@@ -1,26 +1,53 @@
-import React, { HTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
+import LoadingSpinner from './LoadingSpinner';
 
-interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary';
-  disabled?: boolean;
+type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonVariant;
+  loading?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
-  onClick,
   children,
   variant = 'primary',
-  disabled = false,
+  disabled,
+  loading = false,
+  className,
   ...props
 }) => {
-  const baseClasses = 'px-4 py-2 rounded-md font-semibold focus:ring-1 focus:ring-offset-0';
-  const variantClasses =
-    variant === 'primary'
-      ? 'bg-blue-600 text-white hover:bg-blue-700 !outline-dashed  focus:ring-blue-500'
-      : 'bg-gray-200 text-gray-700 hover:bg-gray-300 focus:ring-gray-500';
+  const baseStyles =
+    'px-4 py-2 rounded-md font-semibold transition-colors duration-200 focus:outline-none relative';
+
+  const variantStyles = {
+    primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500',
+    secondary: 'bg-secondary-200 text-secondary-800 hover:bg-secondary-300 focus:ring-secondary-500',
+    tertiary: 'bg-transparent text-primary-600 hover:bg-primary-50 focus:ring-primary-500',
+  };
+
+  const disabledStyles = 'opacity-50 cursor-not-allowed';
+  const loadingStyles = 'cursor-wait';
+
+  const buttonStyles = `
+    ${baseStyles}
+    ${variantStyles[variant]}
+    ${disabled ? disabledStyles : ''}
+    ${loading ? loadingStyles : ''}
+    ${className || ''}
+  `;
 
   return (
-    <button onClick={onClick} disabled={disabled} className={`bg-red-700`} {...props}>
-      {children}
+    <button className={buttonStyles} disabled={disabled || loading} {...props}>
+      {loading ? (
+        <>
+          <span className="opacity-0">{children}</span>
+          <span className="absolute inset-0 flex items-center justify-center">
+            <LoadingSpinner className="h-5 w-5 text-current" />
+          </span>
+        </>
+      ) : (
+        children
+      )}
     </button>
   );
 };

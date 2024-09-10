@@ -1,33 +1,19 @@
-import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import LoginPage from './pages/auth/login';
+import Layout from './components/Layout';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <nav className="bg-gray-800 p-4">
-          <ul className="flex space-x-4">
-            <li>
-              <Link to="/" className="text-white hover:text-gray-300">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/posts" className="text-white hover:text-gray-300">
-                Posts
-              </Link>
-            </li>
-          </ul>
-        </nav>
-
+    <ThemeProvider>
+      <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/posts" element={<Posts initialData={null} />} /> */}
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<Layout><Home /></Layout>} />
+          <Route path="/auth/login" element={<Layout centerContent={true}><LoginPage /></Layout>} />
         </Routes>
-      </div>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 }
 
