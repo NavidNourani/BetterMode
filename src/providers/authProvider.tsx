@@ -50,21 +50,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     });
     if (response.data?.loginNetwork.accessToken) {
       setToken(response.data.loginNetwork.accessToken);
-      showSnackbar('Login successful!', 'success');
-      return { success: true, message: 'Login successful!' };
     } else if (response.errors?.[0].message) {
-      showSnackbar(response.errors[0].message, 'error');
-      return { success: false, message: response.errors[0].message };
+      throw new Error(response.errors?.[0].message);
     } else {
-      showSnackbar('Something went wrong, please try again', 'error');
-      return { success: false, message: 'Something went wrong, please try again' };
+      throw new Error('Something went wrong');
     }
   };
 
   const logout = async () => {
     setToken(null);
     showSnackbar('Logout successful!', 'success');
-    return { success: true, message: 'Logout successful!' };
   };
 
   return <authContext.Provider value={{ login, logout }}>{children}</authContext.Provider>;

@@ -2,12 +2,12 @@ import { ApolloProvider } from '@apollo/client';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import { ProtectedRoute, PublicRoute } from './components/RouteManager';
-import Snackbar from './components/Snackbar';
+import Snackbar from './components/shared/Snackbar';
 import { ThemeProvider } from './context/ThemeContext';
 import { client } from './graphql/apollo-client';
 import Home from './pages/Home';
 import LoginPage from './pages/auth/login';
-import { SnackbarProvider } from './providers/SnackbarContext';
+import { SnackbarProvider } from './providers/SnackbarProvider';
 import { AuthProvider } from './providers/authProvider';
 
 function App() {

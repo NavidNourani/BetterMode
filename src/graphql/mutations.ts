@@ -4,6 +4,7 @@ export const LOGIN_NETWORK = gql`
   mutation LoginNetwork($usernameOrEmail: String!, $password: String!) {
     loginNetwork(input: { usernameOrEmail: $usernameOrEmail, password: $password }) {
       accessToken
+      refreshToken
       role {
         name
         scopes

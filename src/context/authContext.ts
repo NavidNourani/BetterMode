@@ -1,9 +1,9 @@
 import { createContext } from 'react';
 
 interface AuthContextType {
-  login: (username: string, password: string) => Promise<{ success: boolean; message: string }>;
-  logout: () => Promise<{ success: boolean; message: string }>;
+  login: (username: string, password: string) => Promise<void>;
+  logout: () => Promise<void>;
 }
-export const authContext = createContext<AuthContextType | null>(null);
+const authContext = createContext<AuthContextType | null>(null);
 
 export default authContext;
