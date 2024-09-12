@@ -1,44 +1,27 @@
 import Button from '@/components/shared/Button';
 import Card from '@/components/shared/Card';
 import Input from '@/components/shared/Input';
-import { LOGIN_NETWORK } from '@/graphql/mutations';
-import { GET_GUEST_TOKEN } from '@/graphql/queries';
-import { LoginNetworkResponse } from '@/types/gql/loginNetwork';
-import { TokensResponse } from '@/types/gql/tokens';
-import { useMutation, useQuery } from '@apollo/client';
+import useAuth from '@/hooks/useAuth';
+import useSnackbar from '@/hooks/useSnackbar';
 import { FormEvent, useState } from 'react';
 
 const LoginPage = () => {
-  const [guestToken, setGuestToken] = useState<string | null>(null);
-  useQuery<TokensResponse>(GET_GUEST_TOKEN, {
-    variables: {
-      networkDomain: import.meta.env.VITE_BETTERMODE_NETWORK_DOMAIN,
-    },
-    onCompleted: (data) => {
-      if (data.tokens && data.tokens.accessToken) {
-        setGuestToken(data.tokens.accessToken);
-      }
-    },
-    onError: (error) => {
-      console.error('Error fetching guest token:', error);
-    },
-  });
-  const [loginNetwork, { loading }] = useMutation<LoginNetworkResponse>(LOGIN_NETWORK);
+  const { login } = useAuth();
+  const { showSnackbar } = useSnackbar();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await loginNetwork({
-      variables: {
-        usernameOrEmail: e.currentTarget.username.value,
-        password: e.currentTarget.password.value,
-      },
-      context: {
-        headers: {
-          Authorization: `Bearer ${guestToken}`,
-        },
-      },
-    });
-    console.log(response.data?.loginNetwork.accessToken);
+    setLoading(true);
+    try {
+      await login(e.currentTarget.username.value, e.currentTarget.password.value);
+      showSnackbar('Login successful!', 'success');
+    } catch (error: unknown) {
+      showSnackbar('Login failed. Please try again.', 'error');
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
