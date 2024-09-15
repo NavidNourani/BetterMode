@@ -3,6 +3,11 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      container: {
+        screens: {
+          xl: '1344px',
+        },
+      },
       colors: {
         primary: {
           DEFAULT: '#cb4134',
@@ -81,6 +86,9 @@ export default {
           900: '#11504a',
           950: '#042f2c',
         },
+      },
+      fontFamily: {
+        merriweather: ['Merriweather', 'serif'],
       },
     },
   },

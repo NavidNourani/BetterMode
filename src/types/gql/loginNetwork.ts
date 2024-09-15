@@ -6,6 +6,8 @@ export interface LoginNetwork {
   accessToken: string;
   role: Role;
   member: Member;
+  network: string;
+  refreshToken: string;
   __typename: string;
 }
 

@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const LOGIN_NETWORK = gql`
-  mutation LoginNetwork($usernameOrEmail: String!, $password: String!) {
+  mutation LoginNetworkWithPassword($usernameOrEmail: String!, $password: String!) {
     loginNetwork(input: { usernameOrEmail: $usernameOrEmail, password: $password }) {
       accessToken
       refreshToken

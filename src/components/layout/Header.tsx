@@ -1,13 +1,18 @@
+import useAuth from '@/hooks/useAuth';
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
+import Button from '../shared/Button';
 import DesktopNav from './header/DesktopNav';
 import DrawerSidebar from './header/DrawerSidebar';
-import LoginButton from './header/LoginButton';
 import Logo from './header/Logo';
 
 const Header: React.FC = () => {
+  const { logout, token } = useAuth();
+  const location = useLocation();
   const { theme, toggleTheme } = useTheme();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const isLoginPage = location.pathname === '/auth/login';
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
 
@@ -44,7 +49,19 @@ const Header: React.FC = () => {
               {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
             </span>
           </button>
-          <LoginButton className="hidden md:block" />
+          {!isLoginPage && (
+            <>
+              {token ? (
+                <Button className="hidden md:block" onClick={logout}>
+                  Logout
+                </Button>
+              ) : (
+                <Link to="/auth/login">
+                  <Button className="hidden md:block">Login</Button>
+                </Link>
+              )}
+            </>
+          )}
         </div>
       </div>
 
