@@ -1,7 +1,7 @@
 import { Reaction, ReactionMap } from '@/types/reactions';
 import { FC, useEffect, useRef, useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
-import IconButton from './IconButton';
+import IconButton from '../../shared/IconButton';
 
 interface ReactionButtonProps {
   userReactionType?: Reaction;
