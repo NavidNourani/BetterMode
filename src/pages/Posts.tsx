@@ -1,8 +1,8 @@
 import Post from '@/components/Post';
+import { GET_POSTS } from '@/graphql/queries/getPosts';
 import useAuth from '@/hooks/useAuth';
 import { GetPostsResponse } from '@/types/gql/posts';
 import { useQuery } from '@apollo/client';
-import { GET_POSTS } from '../graphql/queries';
 
 export default function Posts() {
   const { token } = useAuth();

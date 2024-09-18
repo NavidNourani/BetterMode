@@ -1,4 +1,5 @@
-export function formatTimeAgo(date: Date | string): string {
+export function formatTimeAgo(date?: Date | string): string {
+  if (!date) return '';
   const now = new Date();
   const past = new Date(date);
   const diffInSeconds = Math.floor((now.getTime() - past.getTime()) / 1000);
@@ -19,7 +20,7 @@ export function formatTimeAgo(date: Date | string): string {
 
   const diffInDays = Math.floor(diffInHours / 24);
   if (diffInDays < 30) {
-    return `${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
+    return `${diffInDays === 1 ? 'a' : diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
   }
 
   const diffInMonths = Math.floor(diffInDays / 30);

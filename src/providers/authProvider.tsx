@@ -1,6 +1,6 @@
 import authContext from '@/context/authContext';
 import { LOGIN_NETWORK } from '@/graphql/mutations';
-import { GET_GUEST_TOKEN } from '@/graphql/queries';
+import { GET_GUEST_TOKEN } from '@/graphql/queries/getTokens';
 import useSnackbar from '@/hooks/useSnackbar';
 import { LoginNetworkResponse } from '@/types/gql/loginNetwork';
 import { TokensResponse } from '@/types/gql/tokens';
