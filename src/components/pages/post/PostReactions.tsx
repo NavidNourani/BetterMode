@@ -1,4 +1,4 @@
-import Reactions from '@/components/pages/post/Reactions';
+import Reactions from '@/components/pages/post/post-reactions/Reactions';
 import ADD_REACTION from '@/graphql/mutations/addReaction';
 import GET_POST from '@/graphql/queries/getPost';
 import { GetPostResponse } from '@/types/gql/post';

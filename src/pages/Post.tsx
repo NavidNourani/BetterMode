@@ -1,6 +1,8 @@
-import PostContent from '@/components/post/PostContent';
-import PostHeader from '@/components/post/PostHeader';
-import PostReactions from '@/components/post/PostReactions';
+import PostContent from '@/components/pages/post/PostContent';
+import PostHeader from '@/components/pages/post/PostHeader';
+import PostReactions from '@/components/pages/post/PostReactions';
+import PostContentSkeleton from '@/components/pages/post/skeleton/PostContentSkeleton';
+import PostHeaderSkeleton from '@/components/pages/post/skeleton/PostHeaderSkeleton';
 import GET_POST from '@/graphql/queries/getPost';
 import { GetPostResponse } from '@/types/gql/post';
 import { Reaction } from '@/types/reactions';
@@ -14,7 +16,13 @@ const Post: React.FC = () => {
     variables: { id },
   });
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="flex flex-col gap-6 bg-background-light-200 dark:bg-background-dark-800 p-6 rounded-lg">
+        <PostHeaderSkeleton />
+        <PostContentSkeleton />
+      </div>
+    );
   if (error) return <div>Error: {error.message}</div>;
   if (!data || !id) return <div>No data</div>;
   return (

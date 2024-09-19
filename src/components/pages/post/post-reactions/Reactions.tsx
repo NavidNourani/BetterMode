@@ -1,7 +1,7 @@
 import IconButton from '@/components/shared/IconButton';
 import { Post } from '@/types/gql/post';
 import { Reaction, ReactionMap } from '@/types/reactions';
-import ReactionButton from './ReactionButton';
+import ReactionButton from './reactions/ReactionButton';
 
 interface Props {
   allowedReactions?: Post['allowedReactions'];
@@ -26,7 +26,6 @@ const Reactions = ({ reactions, allowedReactions, handleReactionClick }: Props) 
           <IconButton
             key={reaction.reaction}
             disabled
-            onClick={() => {}}
             icon={ReactionMap[reaction.reaction as Reaction]}
           />
           <p className="text-lg">{reaction.count}</p>

@@ -10,13 +10,13 @@ interface PostProps {
 
 const Post: FC<PostProps> = ({ node }) => {
   const coverImage = useMemo(() => {
-    return node.fields.find((field) => field.key === 'coverImage')?.relationEntities?.medias?.[0]
+    return node.fields.find(field => field.key === 'coverImage')?.relationEntities?.medias?.[0]
       ?.url;
   }, [node]);
 
   return (
     <Link to={`/posts/${node.id}/${node.slug}`}>
-      <article className="flex flex-col gap-2 relative rounded-md overflow-hidden h-full bg-background-light-700 dark:bg-background-dark-700">
+      <article className="flex flex-col gap-2 relative rounded-md overflow-hidden h-full bg-background-light-300 dark:bg-background-dark-700">
         <img src={coverImage} className="w-full aspect-[3/2] object-cover" />
         <main className="p-4 flex flex-col gap-3 flex-1">
           <p className="flex items-center text-sm font-medium gap-2">

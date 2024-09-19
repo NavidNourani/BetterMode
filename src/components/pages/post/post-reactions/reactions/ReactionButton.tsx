@@ -1,7 +1,7 @@
 import { Reaction, ReactionMap } from '@/types/reactions';
 import { FC, useEffect, useRef, useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
-import IconButton from '../../shared/IconButton';
+import IconButton from '../../../../shared/IconButton';
 
 interface ReactionButtonProps {
   userReactionType?: Reaction;
@@ -46,7 +46,7 @@ const ReactionButton: FC<ReactionButtonProps> = ({
         <IconButton
           disabled={loading}
           className={`text-2xl ${userReactionType ? '!bg-gray-900' : ''}`}
-          icon={userReactionType ? ReactionMap[userReactionType] : <FaRegHeart />}
+          icon={userReactionType ? ReactionMap[userReactionType] : <FaRegHeart size="28px" />}
           onClick={() => setOpenReactions(!openReactions)}
         />
         {openReactions && (
@@ -54,7 +54,7 @@ const ReactionButton: FC<ReactionButtonProps> = ({
             ref={menuRef}
             className="flex flex-row border border-gray-500 gap-4 text-3xl px-4 py-2 bg-gray-700 rounded-full w-fit absolute -translate-y-full -top-1 -left-5"
           >
-            {allowedReactions.map((item) => (
+            {allowedReactions.map(item => (
               <IconButton
                 disabled={loading}
                 key={item}
