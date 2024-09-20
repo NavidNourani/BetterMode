@@ -7,4 +7,4 @@ export const ReactionMap = {
   cry: '😢',
 };
 
-export type Reaction = keyof typeof ReactionMap;
+export type ReactionMapType = keyof typeof ReactionMap;

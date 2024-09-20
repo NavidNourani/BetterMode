@@ -22,18 +22,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   });
 
   const guestToken = useMemo(() => data?.tokens?.accessToken, [data]);
-  useMemo(() => {
-    if (token) {
-      updateApolloCache(client, token);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
-  // useEffect(() => {
-  //   if (token) {
-  //     updateApolloCache(client, token);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [token]);
 
   const login = async (username: string, password: string) => {
     const response = await loginNetwork({
@@ -63,10 +51,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     showSnackbar('Logout successful!', 'success');
   };
 
+  useMemo(() => {
+    if (token) {
+      updateApolloCache(client, token, logout);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
+
   return <authContext.Provider value={{ login, logout, token }}>{children}</authContext.Provider>;
 }
 
-function updateApolloCache(client: ApolloClient<object>, token: string | null) {
+function updateApolloCache(client: ApolloClient<object>, token: string | null, logout: () => void) {
   const authLink = new ApolloLink((operation, forward) => {
     operation.setContext(({ headers = {} }) => ({
       headers: {
@@ -74,7 +69,13 @@ function updateApolloCache(client: ApolloClient<object>, token: string | null) {
         authorization: token ? `Bearer ${token}` : '',
       },
     }));
-    return forward(operation);
+    return forward(operation).map(response => {
+      console.log('2222222222', response.errors);
+      if (response.errors && response.errors.some((error: any) => error.status === 403)) {
+        logout(); // Call logout method on 403 error
+      }
+      return response;
+    });
   });
 
   try {

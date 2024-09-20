@@ -1,11 +1,11 @@
-import { PostNode } from '@/types/gql/posts';
+import { Post as PostType } from '@/types/gql/post';
 import { formatTimeAgo } from '@/utils/dateFormat';
 import { FC, useMemo } from 'react';
 import { FaRegCalendarAlt, FaRegCommentDots, FaRegHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 interface PostProps {
-  node: PostNode;
+  node: PostType;
 }
 
 const Post: FC<PostProps> = ({ node }) => {

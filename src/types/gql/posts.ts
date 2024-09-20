@@ -1,3 +1,5 @@
+import { Post } from './post';
+
 export interface GetPostsResponse {
   posts: Posts;
 }
@@ -5,48 +7,7 @@ export interface GetPostsResponse {
 export interface Posts {
   totalCount: number;
   pageInfo: PageInfo;
-  nodes: PostNode[];
-}
-
-export interface PostNode {
-  id: string;
-  slug: string;
-  mappingFields: MappingField[];
-  fields: Field[];
-  subscribersCount: number;
-  postTypeId: string;
-  reactionsCount: number;
-  hasMoreContent: boolean;
-  isAnonymous: boolean;
-  isHidden: boolean;
-  shortContent: string;
-  createdAt: string;
-  publishedAt: string;
-  ownerId: string;
-  createdById: string;
-  status: string;
-  spaceId: string;
-  imageIds: any[];
-  pinnedInto: any[];
-  repliesCount: number;
-  totalRepliesCount: number;
-  locked: boolean;
-  repliedToIds: any[];
-  repliedToId?: any;
-  title: string;
-  description: string;
-  textContent: string;
-  thumbnail?: any;
-  embedIds: any[];
-  mentionedMembers: any[];
-  primaryReactionType: string;
-  lastActivityAt: string;
-  language: string;
-  customSeoDetail: CustomSeoDetail;
-  relativeUrl: string;
-  url: string;
-  owner: Owner;
-  space: Space;
+  nodes: Post[];
 }
 
 export interface Space {

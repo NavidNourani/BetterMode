@@ -10,15 +10,17 @@ interface PostHeaderProps {
 const PostHeader: React.FC<PostHeaderProps> = ({ owner, createdAt }) => {
   if (!owner) return null;
   return (
-    <div className="flex flex-row gap-3 items-center">
-      <img
-        src={owner.member.profilePicture.url}
-        alt="Profile"
-        className="rounded-full overflow-hidden w-14 h-14"
-      />
-      <div className="flex flex-col gap-2">
-        <h3>{owner.member.name}</h3>
-        <p>{formatTimeAgo(createdAt)}</p>
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-row gap-3 items-center">
+        <img
+          src={owner.member.profilePicture.url}
+          alt="Profile"
+          className="rounded-full overflow-hidden w-14 h-14"
+        />
+        <div className="flex flex-col gap-2">
+          <h3>{owner.member.name}</h3>
+          <p>{formatTimeAgo(createdAt)}</p>
+        </div>
       </div>
     </div>
   );

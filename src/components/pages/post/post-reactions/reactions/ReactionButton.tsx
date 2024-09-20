@@ -1,13 +1,13 @@
-import { Reaction, ReactionMap } from '@/types/reactions';
+import { ReactionMap, ReactionMapType } from '@/types/reactions';
 import { FC, useEffect, useRef, useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
 import IconButton from '../../../../shared/IconButton';
 
 interface ReactionButtonProps {
-  userReactionType?: Reaction;
-  allowedReactions: Reaction[];
+  userReactionType?: ReactionMapType;
+  allowedReactions: ReactionMapType[];
   loading: boolean;
-  onClick: (reactionType: Reaction) => void;
+  onClick: (reactionType: ReactionMapType) => void;
 }
 
 const ReactionButton: FC<ReactionButtonProps> = ({
@@ -32,7 +32,7 @@ const ReactionButton: FC<ReactionButtonProps> = ({
     };
   }, []);
 
-  const handleReactionClick = (reactionType: Reaction) => {
+  const handleReactionClick = (reactionType: ReactionMapType) => {
     if (userReactionType === reactionType) {
       return;
     }
