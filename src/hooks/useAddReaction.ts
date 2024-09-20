@@ -58,6 +58,11 @@ export const useAddReaction = () => {
 
           return updatedReactions.filter(r => r.count > 0) as any;
         },
+        reactionsCount(existingCount: number, { readField }) {
+          const existingReactions = readField('reactions') as Post['reactions'];
+          const userAlreadyReacted = existingReactions.some(r => r.reacted);
+          return userAlreadyReacted ? existingCount : existingCount + 1;
+        },
       },
     });
   };

@@ -48,6 +48,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     setToken(null);
     localStorage.removeItem('@userToken');
+    client.clearStore();
     showSnackbar('Logout successful!', 'success');
   };
 
@@ -82,6 +83,6 @@ function updateApolloCache(client: ApolloClient<object>, token: string | null, l
   } catch (error) {
     console.error('Error updating Apollo Client link:', error); // Error handling
   }
-
+  console.log('2222222222222222222222222222222');
   client.resetStore();
 }
