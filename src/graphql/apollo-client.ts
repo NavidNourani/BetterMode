@@ -7,7 +7,7 @@ export const client = new ApolloClient({
       Query: {
         fields: {
           posts: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
@@ -24,7 +24,7 @@ export const client = new ApolloClient({
       Post: {
         fields: {
           reactions: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
