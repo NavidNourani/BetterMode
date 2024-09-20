@@ -24,7 +24,7 @@ export const client = new ApolloClient({
       Post: {
         fields: {
           reactions: {
-            merge(_existing, incoming) {
+            merge(_, incoming) {
               return incoming;
             },
           },

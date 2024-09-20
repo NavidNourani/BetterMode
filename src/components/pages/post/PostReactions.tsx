@@ -53,7 +53,10 @@ const PostReactions: React.FC<PostReactionsProps> = ({ postId, reactions, allowe
                 reaction: reactionType,
                 count: 1,
                 reacted: true,
-                participants: { nodes: [] },
+                'participants({"limit":10})': {
+                  __typename: 'PaginatedPostReactionParticipant',
+                  nodes: [],
+                },
               },
             ];
           }

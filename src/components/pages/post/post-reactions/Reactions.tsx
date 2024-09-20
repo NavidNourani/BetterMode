@@ -24,12 +24,8 @@ const Reactions = ({ reactions, allowedReactions, handleReactionClick }: Reactio
         />
       )}
       {reactions?.map(reaction => (
-        <div className="flex flex-row gap-2 items-center">
-          <IconButton
-            key={reaction.reaction}
-            disabled
-            icon={ReactionMap[reaction.reaction as ReactionMapType]}
-          />
+        <div key={reaction.reaction} className="flex flex-row gap-2 items-center">
+          <IconButton disabled icon={ReactionMap[reaction.reaction as ReactionMapType]} />
           <p className="text-lg">{reaction.count}</p>
         </div>
       ))}
