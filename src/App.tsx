@@ -6,7 +6,6 @@ import { ProtectedRoute, PublicRoute } from './components/RouteManager';
 import Snackbar from './components/shared/Snackbar';
 import { ThemeProvider } from './context/ThemeContext';
 import { client } from './graphql/apollo-client';
-import Home from './pages/Home';
 import Post from './pages/Post';
 import Posts from './pages/Posts';
 import LoginPage from './pages/auth/login';
@@ -23,8 +22,7 @@ function App() {
               <Layout>
                 <Routes>
                   <Route element={<ProtectedRoute />}>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/posts" element={<Posts />} />
+                    <Route path="/" element={<Posts />} />
                     <Route path="/posts/:id/:title" element={<Post />} />
                   </Route>
                   <Route element={<PublicRoute />}>
