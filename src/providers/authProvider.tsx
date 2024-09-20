@@ -70,7 +70,6 @@ function updateApolloCache(client: ApolloClient<object>, token: string | null, l
       },
     }));
     return forward(operation).map(response => {
-      console.log('2222222222', response.errors);
       if (response.errors && response.errors.some((error: any) => error.status === 403)) {
         logout(); // Call logout method on 403 error
       }
