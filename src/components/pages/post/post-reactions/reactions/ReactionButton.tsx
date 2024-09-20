@@ -6,8 +6,10 @@ import IconButton from '../../../../shared/IconButton';
 interface ReactionButtonProps {
   userReactionType?: ReactionMapType;
   allowedReactions: ReactionMapType[];
-  loading: boolean;
+  loading?: boolean;
+  className?: string;
   onClick: (reactionType: ReactionMapType) => void;
+  size?: 'sm' | 'lg';
 }
 
 const ReactionButton: FC<ReactionButtonProps> = ({
@@ -15,6 +17,8 @@ const ReactionButton: FC<ReactionButtonProps> = ({
   onClick,
   allowedReactions,
   loading,
+  className,
+  size = 'lg',
 }) => {
   const [openReactions, setOpenReactions] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -42,17 +46,33 @@ const ReactionButton: FC<ReactionButtonProps> = ({
 
   return (
     <>
-      <div className="relative">
+      <div
+        className="relative"
+        onClick={e => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
         <IconButton
           disabled={loading}
-          className={`text-2xl ${userReactionType ? '!bg-gray-900' : ''}`}
-          icon={userReactionType ? ReactionMap[userReactionType] : <FaRegHeart size="28px" />}
+          className={`${size === 'lg' ? 'text-2xl' : 'text-base'} ${
+            userReactionType ? '!bg-gray-900' : ''
+          } ${className}`}
+          icon={
+            userReactionType ? (
+              ReactionMap[userReactionType]
+            ) : (
+              <FaRegHeart size={size === 'lg' ? '28px' : '20px'} />
+            )
+          }
           onClick={() => setOpenReactions(!openReactions)}
         />
         {openReactions && (
           <div
             ref={menuRef}
-            className="flex flex-row border border-gray-500 gap-4 text-3xl px-4 py-2 bg-gray-700 rounded-full w-fit absolute -translate-y-full -top-1 -left-5"
+            className={`flex flex-row border border-gray-500 gap-4 px-4 py-2 bg-gray-700 rounded-full w-fit absolute -translate-y-full top-0 ${
+              size === 'lg' ? 'text-3xl' : 'text-xl'
+            } ${size === 'lg' ? '-left-5' : 'left-0'}`}
           >
             {allowedReactions.map(item => (
               <IconButton

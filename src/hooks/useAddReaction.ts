@@ -1,21 +1,16 @@
-import Reactions from '@/components/pages/post/post-reactions/Reactions';
 import ADD_REACTION from '@/graphql/mutations/addReaction';
-import { GetPostResponse, Post } from '@/types/gql/post';
+import { Post } from '@/types/gql/post';
 import { ReactionMapType } from '@/types/reactions';
 import { useApolloClient, useMutation } from '@apollo/client';
-import React from 'react';
-
-interface PostReactionsProps {
+interface Props {
   postId: string;
-  reactions: GetPostResponse['post']['reactions'];
-  allowedReactions: ReactionMapType[];
+  reactionType: ReactionMapType;
 }
-
-const PostReactions: React.FC<PostReactionsProps> = ({ postId, reactions, allowedReactions }) => {
+export const useAddReaction = () => {
   const client = useApolloClient();
   const [addReaction] = useMutation(ADD_REACTION);
 
-  const handleReactionClick = (reactionType: ReactionMapType) => {
+  const handleAddReaction = ({ postId, reactionType }: Props) => {
     addReaction({
       variables: {
         input: {
@@ -67,15 +62,5 @@ const PostReactions: React.FC<PostReactionsProps> = ({ postId, reactions, allowe
     });
   };
 
-  return (
-    <Reactions
-      allowedReactions={allowedReactions}
-      reactions={reactions}
-      handleReactionClick={handleReactionClick}
-      addReactionLoading={false}
-      userReactionType={reactions?.find(reaction => reaction.reacted)?.reaction as ReactionMapType}
-    />
-  );
+  return { handleAddReaction };
 };
-
-export default PostReactions;

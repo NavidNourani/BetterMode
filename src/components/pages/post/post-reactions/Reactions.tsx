@@ -1,16 +1,23 @@
 import IconButton from '@/components/shared/IconButton';
-import { Post } from '@/types/gql/post';
+import { useAddReaction } from '@/hooks/useAddReaction';
+import { GetPostResponse } from '@/types/gql/post';
 import { ReactionMap, ReactionMapType } from '@/types/reactions';
 import ReactionButton from './reactions/ReactionButton';
 
 export interface ReactionsProps {
-  allowedReactions?: Post['allowedReactions'];
-  reactions?: Post['reactions'];
-  handleReactionClick: (reaction: ReactionMapType) => void;
-  addReactionLoading: boolean;
-  userReactionType: ReactionMapType;
+  postId: string;
+  reactions: GetPostResponse['post']['reactions'];
+  allowedReactions: ReactionMapType[];
 }
-const Reactions = ({ reactions, allowedReactions, handleReactionClick }: ReactionsProps) => {
+const Reactions = ({ allowedReactions, postId, reactions }: ReactionsProps) => {
+  const { handleAddReaction } = useAddReaction();
+  const handleReactionClick = (reactionType: ReactionMapType) => {
+    handleAddReaction({
+      postId,
+      reactionType,
+    });
+  };
+
   return (
     <div className="flex flex-row gap-4 items-center">
       {allowedReactions && (

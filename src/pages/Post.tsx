@@ -1,6 +1,6 @@
+import Reactions from '@/components/pages/post/post-reactions/Reactions';
 import PostContent from '@/components/pages/post/PostContent';
 import PostHeader from '@/components/pages/post/PostHeader';
-import PostReactions from '@/components/pages/post/PostReactions';
 import PostContentSkeleton from '@/components/pages/post/skeleton/PostContentSkeleton';
 import PostHeaderSkeleton from '@/components/pages/post/skeleton/PostHeaderSkeleton';
 import GET_POST from '@/graphql/queries/getPost';
@@ -40,7 +40,7 @@ const Post: React.FC = () => {
       <div className="flex flex-col gap-6 p-6">
         <PostHeader owner={data.post.owner} createdAt={data.post.createdAt} />
         <PostContent title={data.post.title} content={data.post.fields} />
-        <PostReactions
+        <Reactions
           postId={id}
           reactions={data.post.reactions}
           allowedReactions={data.post.allowedReactions as ReactionMapType[]}
