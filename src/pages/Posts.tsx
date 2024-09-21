@@ -1,5 +1,5 @@
-import Post from '@/components/Post';
-import PostSkeleton from '@/components/PostSkeleton';
+import Post from '@/components/pages/posts/Post';
+import PostSkeleton from '@/components/pages/posts/PostSkeleton';
 import Button from '@/components/shared/Button';
 import { GET_POSTS } from '@/graphql/queries/getPosts';
 import useAuth from '@/hooks/useAuth';

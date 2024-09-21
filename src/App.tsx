@@ -4,12 +4,12 @@ import Layout from './components/Layout';
 import NotFoundPage from './components/NotFoundPage';
 import { ProtectedRoute, PublicRoute } from './components/RouteManager';
 import Snackbar from './components/shared/Snackbar';
-import { ThemeProvider } from './context/ThemeContext';
 import { client } from './graphql/apollo-client';
 import Post from './pages/Post';
 import Posts from './pages/Posts';
 import LoginPage from './pages/auth/login';
 import { SnackbarProvider } from './providers/SnackbarProvider';
+import { ThemeProvider } from './providers/ThemeProvider';
 import { AuthProvider } from './providers/authProvider';
 
 function App() {

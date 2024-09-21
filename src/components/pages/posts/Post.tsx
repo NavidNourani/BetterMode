@@ -5,7 +5,7 @@ import { formatTimeAgo } from '@/utils/dateFormat';
 import { FC, useMemo } from 'react';
 import { FaRegCalendarAlt, FaRegCommentDots } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import ReactionButton from './pages/post/post-reactions/reactions/ReactionButton';
+import ReactionButton from '../post/post-reactions/reactions/ReactionButton';
 
 interface PostProps {
   node: PostType;
